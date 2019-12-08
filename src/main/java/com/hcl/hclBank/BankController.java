@@ -18,13 +18,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value="/")
 public class BankController {
 
-	
+
 	@Autowired
 	BankService bank;
+	
+	@PostMapping(value="/create")
+	public String create(@RequestBody Account acc) {
+		return bank.create(acc);
+		
+	}
+	
+	@PostMapping(value="/credit")
+	public String credit(@RequestBody Account acc) {
+		return bank.credit(acc);
+		
+	}
+	
+	@PostMapping(value="/debit")
+	public String debit(@RequestBody Account acc) {
+		return bank.debit(acc);
+	}
+		
+	@GetMapping(value="/getAll/{id}")
+	public Account[] getAll(@PathVariable("id") int id) {
+		System.out.println("\n\n\n"+"Controller"+"\n\n\n\n");
+		return  bank.getAll(id).toArray(new Account[bank.getAll(id).size()]);
 		
 	@GetMapping(value="/get/{accNo}")
 	public Account get(@PathVariable int accNo) {
 		return bank.get(accNo);
+    
 	}
 
 	
