@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class BankServiceImpl implements BankService {
 
-
 	@Autowired
 	AccountRepository accrep;
 
@@ -39,9 +38,12 @@ public class BankServiceImpl implements BankService {
 
 	@Override
 	public List<Account> getAll(int userid) {
-		
 		return (List<Account>) accrep.findAllByuserid(userid);
-
+  }
+  
+	@Override
+	public Account get(int accNo) {
+		return accrep.findById(accNo).get();
 	}
 
 	
