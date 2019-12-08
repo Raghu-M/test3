@@ -17,6 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value="/")
 public class BankController {
+
+	
+	@Autowired
+	BankService bank;
+		
+	@GetMapping(value="/get/{accNo}")
+	public Account get(@PathVariable int accNo) {
+		return bank.get(accNo);
+	}
+
 	
 	
 	
